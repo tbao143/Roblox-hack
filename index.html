@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tbao Hub - Dead Rail</title>
     <style>
-        /* Reset and Base Styles */
+
         * {
             margin: 0;
             padding: 0;
@@ -23,7 +23,7 @@
             overflow-x: hidden;
         }
 
-        /* Starry Night Background */
+
         .night-sky {
             position: fixed;
             top: 0;
@@ -59,7 +59,7 @@
             50% { opacity: 1; }
         }
 
-        /* Create stars */
+
         .star {
             position: absolute;
             background-color: white;
@@ -78,7 +78,7 @@
             }
         }
 
-        /* Main Content Container */
+
         .content {
             width: 100%;
             max-width: 800px;
@@ -91,7 +91,7 @@
             z-index: 1;
         }
 
-        /* Typography */
+
         h1 {
             font-size: 2.5em;
             color: #58a6ff;
@@ -119,7 +119,7 @@
             backdrop-filter: blur(5px);
         }
 
-        /* Image Styling */
+
         .small-image {
             width: 80%;
             max-width: 500px;
@@ -131,7 +131,7 @@
             object-fit: cover;
         }
 
-        /* Button Styles */
+
         .btn {
             padding: 12px 24px;
             border-radius: 6px;
@@ -172,7 +172,7 @@
             box-shadow: 0 0 20px rgba(71, 82, 196, 0.4);
         }
 
-        /* Fade-in Animation */
+
         .fade-in {
             animation: fadeIn 1s ease-in-out;
         }
@@ -184,7 +184,6 @@
     </style>
 </head>
 <body class="fade-in">
-    <!-- Starry Night Background -->
     <div class="night-sky">
         <div class="stars" id="stars"></div>
     </div>
@@ -194,7 +193,7 @@
         <h2>Dead Rail | Tbao Hub</h2>
         <h3>By thaibao7444</h3>
         
-        <h3>loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()</h3>
+        <h3>loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/refs/heads/main/TbaoHubDeadRails"))()</h3>
         
         <button class="btn copy-btn" onclick="copyToClipboard()">COPY SCRIPT</button>
 
@@ -208,7 +207,7 @@
     </div>
 
     <script>
-        // Create falling stars
+
         function createStars() {
             const starsContainer = document.getElementById('stars');
             const starCount = 100;
@@ -217,43 +216,40 @@
                 const star = document.createElement('div');
                 star.classList.add('star');
                 
-                // Random size between 1-3px
+  
                 const size = Math.random() * 2 + 1;
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
                 
-                // Random position
+
                 star.style.left = `${Math.random() * 100}%`;
                 star.style.top = `${Math.random() * 100}%`;
                 
-                // Random animation duration (5-15s) and delay
+
                 const duration = Math.random() * 10 + 5;
                 const delay = Math.random() * 5;
                 star.style.animation = `falling ${duration}s linear ${delay}s infinite`;
                 
-                // Random opacity
+
                 star.style.opacity = Math.random() * 0.5 + 0.5;
                 
                 starsContainer.appendChild(star);
             }
         }
 
-        // Initialize stars when page loads
+
         window.addEventListener('load', createStars);
 
-        // Copy function with better feedback
+
         function copyToClipboard() {
-            const text = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()';
+            const text = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/refs/heads/main/TbaoHubDeadRails"))()';
             navigator.clipboard.writeText(text)
                 .then(() => {
                     const btn = document.querySelector('.copy-btn');
-                    btn.textContent = 'COPIED!';
+                    btn.textContent = 'COPIED';
                     setTimeout(() => {
                         btn.textContent = 'COPY SCRIPT';
                     }, 2000);
-                })
-                .catch(err => {
-                    alert('Copy failed: ' + err);
                 });
         }
     </script>
