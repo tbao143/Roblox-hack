@@ -9,13 +9,12 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #0d1117; /* Màu nền tối giống GitHub */
-            color: #c9d1d9; /* Màu chữ sáng */
+            background-color: #0d1117;
+            color: #c9d1d9;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             overflow-x: hidden;
         }
 
-        /* Hiệu ứng các chấm di chuyển */
         .github-bg {
             position: fixed;
             top: 0;
@@ -33,7 +32,6 @@
             100% { background-position: 1000px 1000px; }
         }
 
-        /* Nội dung chính */
         .content {
             position: relative;
             z-index: 1;
@@ -43,15 +41,24 @@
 
         h1 {
             font-size: 3em;
-            color: #58a6ff; /* Màu xanh GitHub */
+            color: #58a6ff;
             margin-bottom: 10px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         h2 {
             font-size: 1.5em;
-            color: #8b949e; /* Màu phụ GitHub */
+            color: #8b949e;
             margin-top: 0;
+        }
+
+        h3 {
+            background-color: #161b22;
+            padding: 12px;
+            border-radius: 6px;
+            display: inline-block;
+            border: 1px solid #30363d;
+            position: relative;
         }
 
         .big-image {
@@ -60,19 +67,69 @@
             margin: 30px auto;
             border-radius: 6px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-            border: 1px solid #30363d; /* Viền tối */
+            border: 1px solid #30363d;
+        }
+
+        /* Nút copy Discord */
+        .discord-section {
+            margin: 25px 0;
+        }
+
+        .discord-link {
+            color: #58a6ff;
+            text-decoration: none;
+            background-color: #161b22;
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .discord-link:hover {
+            background-color: #1f6feb;
+            color: white;
+        }
+
+        .copy-btn {
+            background-color: #238636;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin-left: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background-color: #2ea043;
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
         }
     </style>
 </head>
 <body>
-    <!-- Background hiệu ứng -->
     <div class="github-bg"></div>
     
-    <!-- Nội dung chính -->
     <div class="content">
         <h1>Tbao Hub</h1>
         <h2>Game Dead Rail | Tbao Hub | Thaibao7444</h2>
+        
         <h3>loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/refs/heads/main/TbaoHubDeadRails"))()</h3>
+        
+        <!-- Section Discord với nút copy -->
+        <div class="discord-section">
+            <a href="http://discord.gg/bYb3EweNk7" class="discord-link" target="_blank">
+                Discord Server
+            </a>
+            <button class="copy-btn" onclick="copyDiscordLink()">COPY</button>
+        </div>
+
         <img 
             class="big-image" 
             src="https://raw.githubusercontent.com/tbao143/web/refs/heads/main/Best%20dog%20bruh.jpg" 
@@ -80,14 +137,36 @@
         >
     </div>
 
-    <!-- Hiệu ứng thêm (tùy chọn) -->
     <script>
-        // Hiệu ứng mờ dần khi load trang
+        // Hiệu ứng mờ dần
         document.body.style.opacity = '0';
         window.addEventListener('DOMContentLoaded', () => {
             document.body.style.transition = 'opacity 0.5s ease';
             document.body.style.opacity = '1';
         });
+
+        // Copy Discord Link
+        function copyDiscordLink() {
+            const discordLink = "http://discord.gg/bYb3EweNk7";
+            navigator.clipboard.writeText(discordLink)
+                .then(() => {
+                    alert('Đã copy Discord link!');
+                })
+                .catch(err => {
+                    alert('Lỗi khi copy: ' + err);
+                });
+        }
+
+        // Fix lỗi gõ nhầm tên hàm (thêm cả copy script nếu cần)
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text)
+                .then(() => {
+                    alert('Đã copy!');
+                })
+                .catch(err => {
+                    alert('Lỗi copy: ' + err);
+                });
+        }
     </script>
 </body>
 </html>
