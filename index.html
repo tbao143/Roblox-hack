@@ -3,206 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang web của tôi</title>
+    <title>Tbao Hub - Dead Rail</title>
     <style>
-        /* Background GitHub-style */
-        body {
+        /* Reset and Base Styles */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #0d1117;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #0a0e17, #1a1a2e);
             color: #c9d1d9;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            overflow-x: hidden;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        .github-bg {
+        /* Starry Night Background */
+        .night-sky {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            background-image: radial-gradient(#21262d 1px, transparent 1px);
-            background-size: 20px 20px;
-            animation: moveDots 120s linear infinite;
+            overflow: hidden;
         }
 
-        @keyframes moveDots {
-            0% { background-position: 0 0; }
-            100% { background-position: 1000px 1000px; }
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
         }
 
+        .stars::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            animation: twinkle 5s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Create stars */
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: falling linear infinite;
+        }
+
+        @keyframes falling {
+            0% {
+                transform: translateY(-100vh) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+        }
+
+        /* Main Content Container */
         .content {
+            width: 100%;
+            max-width: 800px;
+            padding: 40px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             position: relative;
             z-index: 1;
-            padding: 40px;
-            text-align: center;
-            max-width: 800px;
-            width: 90%;
-            margin: auto;
         }
 
+        /* Typography */
         h1 {
             font-size: 2.5em;
             color: #58a6ff;
             margin-bottom: 10px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 0 10px rgba(88, 166, 255, 0.5);
         }
 
         h2 {
             font-size: 1.3em;
             color: #8b949e;
-            margin-top: 0;
-            margin-bottom: 30px;
+            margin-bottom: 5px;
+            font-weight: normal;
         }
 
         h3 {
-            background-color: #161b22;
+            background-color: rgba(22, 27, 34, 0.8);
             padding: 12px 20px;
             border-radius: 6px;
-            display: inline-block;
             border: 1px solid #30363d;
+            margin: 15px 0;
             font-size: 1em;
+            font-weight: normal;
+            word-break: break-all;
+            max-width: 100%;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Image Styling */
+        .small-image {
+            width: 80%;
+            max-width: 500px;
+            height: auto;
             margin: 20px 0;
-        }
-
-        /* Hình ảnh hình chữ nhật nhỏ ở giữa */
-        .image-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin: 30px 0;
-        }
-
-        .big-image {
-            width: 400px; /* Chiều rộng cố định */
-            height: 225px; /* Chiều cao cố định (tỉ lệ 16:9) */
+            border-radius: 6px;
+            box-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
+            border: 1px solid #30363d;
             object-fit: cover;
-            border-radius: 6px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-            border: 1px solid #30363d;
         }
 
-        /* Nút copy Discord */
-        .discord-section {
-            margin: 25px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .discord-link {
-            color: #58a6ff;
-            text-decoration: none;
-            background-color: #161b22;
-            padding: 10px 20px;
+        /* Button Styles */
+        .btn {
+            padding: 12px 24px;
             border-radius: 6px;
-            border: 1px solid #30363d;
-            display: inline-flex;
-            align-items: center;
+            cursor: pointer;
+            font-size: 16px;
             transition: all 0.3s;
-        }
-
-        .discord-link:hover {
-            background-color: #1f6feb;
+            text-decoration: none;
+            display: inline-block;
+            border: none;
+            margin: 10px 0;
+            width: 200px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            background-color: rgba(35, 134, 54, 0.8);
             color: white;
+            box-shadow: 0 0 15px rgba(35, 134, 54, 0.3);
         }
 
         .copy-btn {
-            background-color: #238636;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
+            background-color: rgba(35, 134, 54, 0.8);
+            box-shadow: 0 0 15px rgba(35, 134, 54, 0.3);
         }
 
         .copy-btn:hover {
-            background-color: #2ea043;
+            background-color: rgba(46, 160, 67, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(46, 160, 67, 0.4);
         }
 
-        .copy-btn:active {
-            transform: scale(0.95);
+        .discord-btn {
+            background-color: rgba(88, 101, 242, 0.8);
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.3);
         }
 
-        /* Responsive cho mobile */
-        @media (max-width: 600px) {
-            .content {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-            
-            h2 {
-                font-size: 1.1em;
-            }
-            
-            .big-image {
-                width: 100%;
-                height: auto;
-                max-height: 200px;
-            }
-            
-            .discord-section {
-                flex-direction: column;
-            }
+        .discord-btn:hover {
+            background-color: rgba(71, 82, 196, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(71, 82, 196, 0.4);
+        }
+
+        /* Fade-in Animation */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body>
-    <div class="github-bg"></div>
+<body class="fade-in">
+    <!-- Starry Night Background -->
+    <div class="night-sky">
+        <div class="stars" id="stars"></div>
+    </div>
     
     <div class="content">
         <h1>Tbao Hub</h1>
-        <h2>Game Dead Rail | Tbao Hub | Thaibao7444</h2>
+        <h2>Dead Rail | Tbao Hub</h2>
+        <h3>By thaibao7444</h3>
         
-        <h3>loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/refs/heads/main/TbaoHubDeadRails"))()</h3>
+        <h3>loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()</h3>
         
-        <!-- Section Discord với nút copy -->
-        <div class="discord-section">
-            <a href="http://discord.gg/bYb3EweNk7" class="discord-link" target="_blank">
-                Discord Server
-            </a>
-            <button class="copy-btn" onclick="copyDiscordLink()">COPY LINK</button>
-        </div>
+        <button class="btn copy-btn" onclick="copyToClipboard()">COPY SCRIPT</button>
 
-        <!-- Container hình ảnh -->
-        <div class="image-container">
-            <img 
-                class="big-image" 
-                src="https://raw.githubusercontent.com/tbao143/web/refs/heads/main/Best%20dog%20bruh.jpg" 
-                alt="Script check"
-            >
-        </div>
+        <img 
+            class="small-image" 
+            src="https://raw.githubusercontent.com/tbao143/web/refs/heads/main/Dead%20Rail.jpg" 
+            alt="Dead Rail Script"
+        >
+
+        <a href="https://discord.gg/bYb3EweNk7" class="btn discord-btn" target="_blank">JOIN DISCORD</a>
     </div>
 
     <script>
-        // Hiệu ứng mờ dần
-        document.body.style.opacity = '0';
-        window.addEventListener('DOMContentLoaded', () => {
-            document.body.style.transition = 'opacity 0.5s ease';
-            document.body.style.opacity = '1';
-        });
+        // Create falling stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 100;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                // Random size between 1-3px
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                // Random position
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation duration (5-15s) and delay
+                const duration = Math.random() * 10 + 5;
+                const delay = Math.random() * 5;
+                star.style.animation = `falling ${duration}s linear ${delay}s infinite`;
+                
+                // Random opacity
+                star.style.opacity = Math.random() * 0.5 + 0.5;
+                
+                starsContainer.appendChild(star);
+            }
+        }
 
-        // Copy Discord Link
-        function copyDiscordLink() {
-            const discordLink = "http://discord.gg/bYb3EweNk7";
-            navigator.clipboard.writeText(discordLink)
+        // Initialize stars when page loads
+        window.addEventListener('load', createStars);
+
+        // Copy function with better feedback
+        function copyToClipboard() {
+            const text = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/XNEOFF/FlyGuiV3/main/FlyGuiV3.txt"))()';
+            navigator.clipboard.writeText(text)
                 .then(() => {
-                    alert('Đã copy Discord link!');
+                    const btn = document.querySelector('.copy-btn');
+                    btn.textContent = 'COPIED!';
+                    setTimeout(() => {
+                        btn.textContent = 'COPY SCRIPT';
+                    }, 2000);
                 })
                 .catch(err => {
-                    alert('Lỗi khi copy: ' + err);
+                    alert('Copy failed: ' + err);
                 });
         }
     </script>
