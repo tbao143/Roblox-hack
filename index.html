@@ -9,12 +9,13 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #0d1117;
-            color: #c9d1d9;
+            background-color: #0d1117; /* Màu nền tối giống GitHub */
+            color: #c9d1d9; /* Màu chữ sáng */
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             overflow-x: hidden;
         }
 
+        /* Hiệu ứng các chấm di chuyển */
         .github-bg {
             position: fixed;
             top: 0;
@@ -32,6 +33,7 @@
             100% { background-position: 1000px 1000px; }
         }
 
+        /* Nội dung chính */
         .content {
             position: relative;
             z-index: 1;
@@ -41,24 +43,15 @@
 
         h1 {
             font-size: 3em;
-            color: #58a6ff;
+            color: #58a6ff; /* Màu xanh GitHub */
             margin-bottom: 10px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         h2 {
             font-size: 1.5em;
-            color: #8b949e;
+            color: #8b949e; /* Màu phụ GitHub */
             margin-top: 0;
-        }
-
-        h3 {
-            background-color: #161b22;
-            padding: 12px;
-            border-radius: 6px;
-            display: inline-block;
-            border: 1px solid #30363d;
-            position: relative;
         }
 
         .big-image {
@@ -67,69 +60,70 @@
             margin: 30px auto;
             border-radius: 6px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-            border: 1px solid #30363d;
+            border: 1px solid #30363d; /* Viền tối */
         }
 
-        /* Nút copy Discord */
-        .discord-section {
-            margin: 25px 0;
-        }
-
-        .discord-link {
-            color: #58a6ff;
-            text-decoration: none;
-            background-color: #161b22;
-            padding: 10px 15px;
-            border-radius: 6px;
-            border: 1px solid #30363d;
-            display: inline-flex;
-            align-items: center;
-            transition: all 0.3s;
-        }
-
-        .discord-link:hover {
-            background-color: #1f6feb;
+        /* Nút Discord */
+        .discord-btn {
+            display: inline-block;
+            background-color: #5865F2; /* Màu Discord */
             color: white;
+            padding: 12px 24px;
+            margin: 20px 0;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: none;
+            cursor: pointer;
         }
 
+        .discord-btn:hover {
+            background-color: #4752C4; /* Màu hover Discord */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .discord-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Copy button */
         .copy-btn {
-            background-color: #238636;
+            background-color: #238636; /* Màu xanh GitHub */
             color: white;
             border: none;
-            padding: 8px 12px;
-            margin-left: 10px;
-            border-radius: 6px;
+            padding: 8px 16px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
+            margin-left: 10px;
+            font-family: inherit;
+            transition: background-color 0.2s;
         }
 
         .copy-btn:hover {
-            background-color: #2ea043;
-        }
-
-        .copy-btn:active {
-            transform: scale(0.95);
+            background-color: #2ea043; /* Màu hover */
         }
     </style>
 </head>
 <body>
+    <!-- Background hiệu ứng -->
     <div class="github-bg"></div>
     
+    <!-- Nội dung chính -->
     <div class="content">
         <h1>Tbao Hub</h1>
         <h2>Game Dead Rail | Tbao Hub | Thaibao7444</h2>
         
-        <h3>loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/refs/heads/main/TbaoHubDeadRails"))()</h3>
-        
-        <!-- Section Discord với nút copy -->
-        <div class="discord-section">
-            <a href="http://discord.gg/bYb3EweNk7" class="discord-link" target="_blank">
-                Discord Server
-            </a>
-            <button class="copy-btn" onclick="copyDiscordLink()">COPY</button>
+        <div style="margin: 20px 0;">
+            <span>loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/refs/heads/main/TbaoHubDeadRails"))()</span>
+            <button class="copy-btn" onclick="copyToClipboard()">COPY</button>
         </div>
-
+        
+        <a href="https://discord.gg/bYb3EweNk7" class="discord-btn" target="_blank">Discord Tbao Hub</a>
+        
         <img 
             class="big-image" 
             src="https://raw.githubusercontent.com/tbao143/web/refs/heads/main/Best%20dog%20bruh.jpg" 
@@ -137,31 +131,21 @@
         >
     </div>
 
+    <!-- Scripts -->
     <script>
-        // Hiệu ứng mờ dần
+        // Hiệu ứng mờ dần khi load trang
         document.body.style.opacity = '0';
         window.addEventListener('DOMContentLoaded', () => {
             document.body.style.transition = 'opacity 0.5s ease';
             document.body.style.opacity = '1';
         });
 
-        // Copy Discord Link
-        function copyDiscordLink() {
-            const discordLink = "http://discord.gg/bYb3EweNk7";
-            navigator.clipboard.writeText(discordLink)
-                .then(() => {
-                    alert('Đã copy Discord link!');
-                })
-                .catch(err => {
-                    alert('Lỗi khi copy: ' + err);
-                });
-        }
-
-        // Fix lỗi gõ nhầm tên hàm (thêm cả copy script nếu cần)
-        function copyToClipboard(text) {
+        // Copy function
+        function copyToClipboard() {
+            const text = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/refs/heads/main/TbaoHubDeadRails"))()';
             navigator.clipboard.writeText(text)
                 .then(() => {
-                    alert('Đã copy!');
+                    alert('Đã copy vào clipboard!');
                 })
                 .catch(err => {
                     alert('Lỗi copy: ' + err);
